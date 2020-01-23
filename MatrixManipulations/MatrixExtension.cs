@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace MatrixManipulations
 {
@@ -27,7 +27,57 @@ namespace MatrixManipulations
         /// </example>
         public static int[,] GetMatrix(int size)
         {
-            throw new NotImplementedException("You need to implement this function.");
+            if (size <= 0)
+            {
+                throw new ArgumentException("Size must be greater than zero.", nameof(size));
+            }
+
+            int[,] array = new int[size, size];
+            int k = 0, l = 0;
+            int m = size;
+            int n = size;
+            int number = 0;
+
+            while (k < m && l < n)
+            {
+                for (int i = l; i < n; ++i)
+                {
+                    number++;
+                    array[k, i] = number;
+                }
+
+                k++;
+                for (int i = k; i < m; ++i)
+                {
+                    number++;
+                    array[i, n - 1] = number;
+                }
+
+                n--;
+                if (k < m)
+                {
+                    for (int i = n - 1; i >= l; --i)
+                    {
+                        number++;
+                        array[m - 1, i] = number;
+                    }
+
+                    m--;
+                }
+
+                if (l < n)
+                {
+                    for (int i = m - 1; i >= k; --i)
+                    {
+                        number++;
+                        array[i, l] = number;
+                    }
+
+                    l++;
+                }
+            }
+
+            return array;
         }
     }
 }

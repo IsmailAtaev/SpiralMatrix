@@ -29,7 +29,7 @@ namespace MatrixManipulations
         {
             if (size <= 0)
             {
-                throw new ArgumentException("Size must be greater than zero.", nameof(size));
+                throw new ArgumentException($"Parameter {nameof(size)} must be greater than 0.");
             }
 
             int[,] array = new int[size, size];
